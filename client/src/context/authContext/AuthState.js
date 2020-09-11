@@ -23,8 +23,8 @@ import {
 const AuthState=(props)=> {
 
     const initialState={
-         auth: localStorage.token ? true : false,
-        // auth:true,
+        auth: localStorage.token ? true : false,
+        // auth:false
         authLoad:{},
         allAuth: [],
         adminAuth:false,

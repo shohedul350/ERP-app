@@ -18,10 +18,11 @@ import AdminContext from '../../context/authContext/authContext'
 
 export default function SidebarExample(props) {
   const { url } = props.match;
-  const {getAuth,getAllAuth,isReload,logout}=useContext(AdminContext)
+  const {getAuth,getAllAuth,logout}=useContext(AdminContext)
   useEffect(()=>{
-    // getAuth();
-    // getAllAuth()
+    getAuth();
+    getAllAuth()
+    // eslint-disable-next-line
   },[])
  
   
