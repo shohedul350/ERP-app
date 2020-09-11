@@ -7,7 +7,7 @@ const AdminAccessRoute =({component: Component, ...rest})=>{
     return(
    <Route
    {...rest}
-   render={props=>adminAuth  ?  (<Component {...props} />) : (<Redirect to='/dashboard/permission'/>) }
+   render={props=> !adminAuth ?  (<Redirect to='/dashboard/permission'/>) : (<Component {...props} />)  }
    
    />
     )

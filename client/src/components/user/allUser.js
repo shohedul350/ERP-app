@@ -7,7 +7,7 @@ const {getAllAuth,allAuth,deleteAuth, success} = useContext(AuthContext);
 
 useEffect(()=>{
   getAllAuth();
-//eslint disable nextline
+//eslint-disable-next-line
 },[]);
 
 function confirm(id) {
@@ -19,7 +19,7 @@ function confirm(id) {
 }
 
 function cancel(e) {
-  console.log(e);
+  
   message.error('Click on No');
 }
     return (

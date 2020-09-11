@@ -10,7 +10,7 @@ import AdminAccessRoute from './utils/adminAccessRoute'
 import ProctedRoute from './utils/proctedRoute'
 class DashboardRouter extends React.Component {
   render() {
-    const { url } = this.props;
+  
     return (
       <Switch>
         <ProctedRoute
@@ -18,37 +18,34 @@ class DashboardRouter extends React.Component {
           path="/dashboard"
           component={Widget}
         />
-    
- 
+
          <AdminAccessRoute
           exact
-          path={`${url}/all-auth`}
+          path="/dashboard/all-auth"
           component={Alluser}
         />
           <AdminAccessRoute
           exact
-          path={`${url}/add-auth`}
+          path="/dashboard/add-auth"
           component={AddAuth}
         />
           <ProctedRoute
           exact
-          path={`${url}/my-profile`}
+          path="/dashboard/my-profile"
           component={MyProfile}
         />
         <ProctedRoute
           exact
-          path={`${url}/permission`}
+          path="/dashboard/permission"
           component={Permission}
         />
         <ProctedRoute
           exact
-          path={`${url}/change-password`}
+          path="/dashboard/change-password"
           component={ChangePassword}
         />
-      
       </Switch>
     );
   }
 }
-
 export default DashboardRouter;
