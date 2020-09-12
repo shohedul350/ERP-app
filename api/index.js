@@ -1,9 +1,14 @@
 const authRoutes = require('./authRoute');
+const profileRoutes = require('./profileRoute');
 
 const routes = [
   {
     path: '/api',
     handler: authRoutes,
+  },
+  {
+    path: '/api',
+    handler: profileRoutes,
   },
 
 ];

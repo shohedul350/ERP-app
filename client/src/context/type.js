@@ -16,6 +16,12 @@ export const SEND_FORGET_REQUEST = 'SEND_FORGET_REQUEST'
 export const RESET_REQUEST = 'RESET_REQUEST'
 
 
+export const ADD_PROFILE = 'ADD_PROFILE'
+export const GET_PROFILE = 'GET_PROFILE'
+export const EDIT_PROFILE = 'EDIT_PROFILE'
+export const DELETE_PROFILE = 'DELETE_PROFILE'
+
+
 
 
 

@@ -1,22 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useContext} from 'react';
 import Widget from './Widgets/index'
+import ProfileContext from '../context/profileContext/ProfileContext'
 
 
 
 import { Row, Col } from 'antd';
 
 const Dashboard = () => {
-  //const authContext = useContext(AuthContext);
+const {getProfile,profile} = useContext(ProfileContext);
 
   useEffect(() => {
-    // Load user method will here
-    // console.log('Load user ran')
-    // authContext.loadUser();
+    getProfile()
     // eslint-disable-next-line
   },[]);
-
+const companyProfile = profile[0] || []
   return (
- <Widget/>
+ <Widget companyProfile={companyProfile}/>
   )
 }
 
