@@ -5,6 +5,7 @@ const Profile = require('../models/ProfileModel');
 
 // create profile by admin
 exports.createProfile = asyncHandler(async (req, res) => {
+  
 //  validation
   const errors = validationResult(req).formatWith(errorFormator);
   if (!errors.isEmpty()) {
@@ -21,7 +22,7 @@ exports.createProfile = asyncHandler(async (req, res) => {
     compnayLogo,
   } = req.body;
   const profile = await Profile.find();
-  if (profile.length === []) {
+  if (profile.length) {
     return res.status(404).json({ msg: 'Profile Already Created' });
   }
   const newprofile = new Profile({

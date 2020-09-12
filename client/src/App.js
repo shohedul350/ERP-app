@@ -10,6 +10,7 @@ import Dashboard  from './components/layout/Dashboardlayout';
 
 import './App.css';
 import AuthState from './context/authContext/AuthState'
+import ProfileState from './context/profileContext/profileState'
 import setAuthToken from './utils/setToken'
 
 
@@ -21,6 +22,7 @@ function App() {
   }
   return (
            <AuthState>
+             <ProfileState>
             <BrowserRouter>
               <Fragment>
                 <div className='App'>
@@ -36,6 +38,7 @@ function App() {
                 </div>
               </Fragment>
             </BrowserRouter>
+            </ProfileState>
             </AuthState>
   );
 }

@@ -1,7 +1,7 @@
 import React, {useState,useContext,useEffect} from 'react'
-import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Link} from 'react-router-dom'
 
-import { Layout, Menu } from 'antd';
+import { Layout, Menu ,Avatar} from 'antd';
 import {
     AppstoreOutlined,
     MenuUnfoldOutlined,
@@ -14,17 +14,19 @@ import DashboardRouter from '../../DashboardRouter'
 
 import './DashboardLayout.css';
 import AdminContext from '../../context/authContext/authContext'
-
+import ProfileContext from '../../context/profileContext/ProfileContext'
+import { size } from 'styled-theme';
 
 export default function SidebarExample(props) {
   const { url } = props.match;
   const {getAuth,getAllAuth,logout}=useContext(AdminContext)
+  const {profile}=useContext(ProfileContext)
   useEffect(()=>{
     getAuth();
     getAllAuth()
     // eslint-disable-next-line
   },[])
- 
+ const companyProfile = profile[0] || []
   
     const { Header, Sider, Content, Footer } = Layout;
     const { SubMenu } = Menu;
@@ -34,12 +36,8 @@ export default function SidebarExample(props) {
         setSidebarToggle(!sidebarToggle)
     }
 
- 
 
-    
   return (
-    
-
         <Router>
         <Layout>
         <Sider trigger={null} collapsible collapsed={sidebarToggle}
@@ -48,7 +46,12 @@ export default function SidebarExample(props) {
           height: '100vh',
           left: 0,
         }}>
-          <div className="logo" />
+          <div className="logo ">
+            
+          <Avatar src="https://i.pinimg.com/originals/1d/cd/6f/1dcd6fb810c39afffab77967d67741c9.jpg" size={30}  />
+          <p className="ml-5" style={{fontSize:"12px"}}>{companyProfile.companyName}</p>
+          </div>
+        
         
           <Menu
           defaultSelectedKeys={['1']}
@@ -63,10 +66,8 @@ export default function SidebarExample(props) {
             Dashboard
                   </Link>
           </Menu.Item>
-        
-      
-
           
+          {/* user menu item */}
           <SubMenu key="sub2" icon={<AppstoreOutlined />} title="USER">
             <Menu.Item key="9">
             <Link  to="/dashboard/all-auth">
@@ -87,6 +88,24 @@ export default function SidebarExample(props) {
            </Menu.Item>
 
           </SubMenu>
+
+          {/* companyProfile menu item */}
+
+          <SubMenu key="sub3" icon={<AppstoreOutlined />} title="COMPANY PROFILE">
+            <Menu.Item key="12">
+            <Link  to="/dashboard/get-profile">
+                   Profile
+                  </Link>
+            </Menu.Item>
+
+            <Menu.Item key="13">
+            <Link to={'/dashboard/create-profile'}>
+                  Create Profile
+                  </Link>
+            </Menu.Item>
+
+          </SubMenu>
+
         </Menu>
         </Sider>
         <Layout className="site-layout">

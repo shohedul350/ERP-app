@@ -19,12 +19,20 @@
 
 .logo {
   height: 32px;
-  background: rgba(255, 255, 255, 0.2);
+  display: inline-flex;
+  /* background: rgba(255, 255, 255, 0.2); */
   margin: 16px;
+  
 }
 
 
 .site-layout .site-layout-background {
   background: #ffffff;;
   color: white;
+}
+.spin{
+  text-align: center;
+  padding:50px;
+
+ 
 }

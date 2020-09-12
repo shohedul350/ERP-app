@@ -5,6 +5,8 @@ import Alluser from './components/user/allUser'
 import AddAuth from './components/user/addAuth'
 import MyProfile from './components/user/myProfile'
 import Permission from './components/user/permission'
+import CreateProfile from './components/companyProfile/CreateProfile'
+import GetProfile from './components/companyProfile/GetProfile'
 import ChangePassword from './components/user/changePassword'
 import AdminAccessRoute from './utils/adminAccessRoute'
 import ProctedRoute from './utils/proctedRoute'
@@ -33,6 +35,16 @@ class DashboardRouter extends React.Component {
           exact
           path="/dashboard/my-profile"
           component={MyProfile}
+        />
+           <AdminAccessRoute
+          exact
+          path="/dashboard/create-profile"
+          component={CreateProfile}
+        />
+           <ProctedRoute
+          exact
+          path="/dashboard/get-profile"
+          component={GetProfile}
         />
         <ProctedRoute
           exact
