@@ -15,17 +15,23 @@ import DashboardRouter from '../../DashboardRouter'
 import './DashboardLayout.css';
 import AdminContext from '../../context/authContext/authContext'
 import ProfileContext from '../../context/profileContext/ProfileContext'
-import { size } from 'styled-theme';
+import ProductContext from '../../context/productContext/productContext'
 
 export default function SidebarExample(props) {
   const { url } = props.match;
-  const {getAuth,getAllAuth,logout}=useContext(AdminContext)
-  const {profile}=useContext(ProfileContext)
+  const {getAuth,getAllAuth,logout}=useContext(AdminContext);
+  const {profile}=useContext(ProfileContext);
+  const {getProduct}=useContext(ProductContext)
   useEffect(()=>{
     getAuth();
-    getAllAuth()
+    getAllAuth();
+    getProduct()
     // eslint-disable-next-line
   },[])
+
+ 
+
+  
  const companyProfile = profile[0] || []
   
     const { Header, Sider, Content, Footer } = Layout;
@@ -89,18 +95,29 @@ export default function SidebarExample(props) {
 
           </SubMenu>
 
+          {/* product menu */}
+          <SubMenu key="sub4" icon={<AppstoreOutlined />} title="PRODUCT">
+            <Menu.Item key="13">
+            <Link  to="/dashboard/all-product">
+                   STOCK
+                  </Link>
+            </Menu.Item>
+
+
+          </SubMenu>
+
           {/* companyProfile menu item */}
 
           <SubMenu key="sub3" icon={<AppstoreOutlined />} title="COMPANY PROFILE">
             <Menu.Item key="12">
             <Link  to="/dashboard/get-profile">
-                   Profile
+                   PROFILE
                   </Link>
             </Menu.Item>
 
             <Menu.Item key="13">
             <Link to={'/dashboard/create-profile'}>
-                  Create Profile
+                  CREATE PROFILE
                   </Link>
             </Menu.Item>
 
