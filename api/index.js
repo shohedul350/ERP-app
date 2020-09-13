@@ -1,5 +1,6 @@
 const authRoutes = require('./authRoute');
 const profileRoutes = require('./profileRoute');
+const productRoutes = require('./productRoute');
 
 const routes = [
   {
@@ -9,6 +10,10 @@ const routes = [
   {
     path: '/api',
     handler: profileRoutes,
+  },
+  {
+    path: '/api',
+    handler: productRoutes,
   },
 
 ];

@@ -5,7 +5,6 @@ const Profile = require('../models/ProfileModel');
 
 // create profile by admin
 exports.createProfile = asyncHandler(async (req, res) => {
-  
 //  validation
   const errors = validationResult(req).formatWith(errorFormator);
   if (!errors.isEmpty()) {
