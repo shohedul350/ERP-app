@@ -1,10 +1,13 @@
 import {
     GET_PRODUCT,
+    UPLOAD_PRODUCT,
     UPDATE_PRODUCT,
+    DELETE_PRODUCT,
     EDIT_FORM,
     CLEAR_EDITFORM,
-    SET_MESSAHE,
-    CLEAR_MESSAGE,
+    CLEAR_ERROR,
+    ERROR,
+    CLEAR_SUCCESS,
     ADD_CART
 } from '../type'
 
@@ -19,17 +22,27 @@ export default (state,action)=>{
                 success:action.payload.success,
                 serverMessage: action.payload.msg,
             }
+            case UPLOAD_PRODUCT:
+                return{
+                    ...state,
+                    products: [...state.products, action.payload.newProduct],
+                    success:action.payload.success,
+                    serverMessage: action.payload.msg,
+                }
+                case DELETE_PRODUCT:
+                    return {
+                      ...state,
+                      products: state.products.filter(product => product._id !== action.payload.deleteProduct),
+                      success:action.payload.success,
+                      serverMessage: action.payload.msg,
+                    }
 
             case  UPDATE_PRODUCT:
                 return{
                 ...state,
                 products:state.products.map(product=>product._id === action.payload._id ? action.payload:product)
                    }
-         case SET_MESSAHE:
-            return{
-                ...state,
-                message:action.payload
-            }
+  
 
             case EDIT_FORM:
                 return{
@@ -44,11 +57,27 @@ export default (state,action)=>{
                  editForm:null
                 } 
 
-         case CLEAR_MESSAGE:
-            return{
-                    ...state,
-                    message:null
-                }
+                case CLEAR_SUCCESS:
+                    return{
+                     ...state,
+                     success:false,
+                     error:false,
+                     serverMessage:null,
+                          }
+                case ERROR:
+                 return{
+                   ...state,
+                     success: false,
+                     error: true,
+                     serverMessage:action.payload.msg
+                         }
+         case CLEAR_ERROR:
+                  return{
+                     ...state,
+                     success: false,
+                     error: false,
+                     serverMessage: null
+                 }
         case ADD_CART:
                     return{
                         ...state,

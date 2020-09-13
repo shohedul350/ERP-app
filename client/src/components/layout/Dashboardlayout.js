@@ -102,6 +102,11 @@ export default function SidebarExample(props) {
                    STOCK
                   </Link>
             </Menu.Item>
+            <Menu.Item key="14">
+            <Link  to="/dashboard/add-product">
+                   ADD PRODUCT
+                  </Link>
+            </Menu.Item>
 
 
           </SubMenu>

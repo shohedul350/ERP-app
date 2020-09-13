@@ -49,6 +49,7 @@ const getProduct=async()=>{
 
   //admmin upload product
   const uploadProduct= async data=>{
+    console.log(data)
     const formData = new FormData();
     Object.keys(data).forEach(key => formData.append(key, data[key]));
     const config = {
@@ -58,6 +59,7 @@ const getProduct=async()=>{
      };
 
 try{
+  
   const res= await Axios.post('/api/product',formData,config)
   dispatch({ 
       type:UPLOAD_PRODUCT,
@@ -97,6 +99,7 @@ const deleteProduct = async (id)=>{
   //
    //update product
  const updateProduct=async(product)=>{
+  
   const config={
       header:{
           'Content-Type':'application/json'
