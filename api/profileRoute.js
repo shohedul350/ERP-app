@@ -4,10 +4,10 @@ const {
   createProfile, showProfile, deleteProfile, updateProfile,
 } = require('../controller/profileController');
 
-const { adminProtect } = require('../middleware/authenticate');
+const { adminProtect, protect } = require('../middleware/authenticate');
 
 router.route('/profile').post(adminProtect, profileValidation, createProfile);
-router.route('/profile').get(adminProtect, showProfile);
+router.route('/profile').get(protect, showProfile);
 router.route('/profile/:id').put(adminProtect, updateProfile);
 router.route('/profile/:id').delete(adminProtect, deleteProfile);
 

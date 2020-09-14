@@ -1,7 +1,7 @@
 import React, {useState,useContext,useEffect} from 'react'
 import { BrowserRouter as Router, Link} from 'react-router-dom'
 
-import { Layout, Menu ,Avatar} from 'antd';
+import { Layout, Menu ,Avatar,Popover} from 'antd';
 import {
     AppstoreOutlined,
     MenuUnfoldOutlined,
@@ -15,17 +15,29 @@ import DashboardRouter from '../../DashboardRouter'
 import './DashboardLayout.css';
 import AdminContext from '../../context/authContext/authContext'
 import ProfileContext from '../../context/profileContext/ProfileContext'
-import { size } from 'styled-theme';
+import ProductContext from '../../context/productContext/productContext'
 
 export default function SidebarExample(props) {
   const { url } = props.match;
-  const {getAuth,getAllAuth,logout}=useContext(AdminContext)
-  const {profile}=useContext(ProfileContext)
+  const {getAuth,getAllAuth,logout}=useContext(AdminContext);
+  const {getProfile,profile}=useContext(ProfileContext);
+  const {getProduct}=useContext(ProductContext)
   useEffect(()=>{
     getAuth();
-    getAllAuth()
+    getAllAuth();
+    getProfile();
+    getProduct()
     // eslint-disable-next-line
   },[])
+
+ 
+  const content = (
+    <div>
+      <p onClick={()=>logout()} style={{cursor:"pointer"}}>Logout</p>
+      <Link to="/dashboard/my-profile"><p style={{cursor:"pointer"}}>My Profile</p></Link>
+    </div>
+  );
+  
  const companyProfile = profile[0] || []
   
     const { Header, Sider, Content, Footer } = Layout;
@@ -89,18 +101,34 @@ export default function SidebarExample(props) {
 
           </SubMenu>
 
+          {/* product menu */}
+          <SubMenu key="sub4" icon={<AppstoreOutlined />} title="PRODUCT">
+            <Menu.Item key="13">
+            <Link  to="/dashboard/all-product">
+                   STOCK
+                  </Link>
+            </Menu.Item>
+            <Menu.Item key="14">
+            <Link  to="/dashboard/add-product">
+                   ADD PRODUCT
+                  </Link>
+            </Menu.Item>
+
+
+          </SubMenu>
+
           {/* companyProfile menu item */}
 
           <SubMenu key="sub3" icon={<AppstoreOutlined />} title="COMPANY PROFILE">
             <Menu.Item key="12">
             <Link  to="/dashboard/get-profile">
-                   Profile
+                   PROFILE
                   </Link>
             </Menu.Item>
 
             <Menu.Item key="13">
             <Link to={'/dashboard/create-profile'}>
-                  Create Profile
+                  CREATE PROFILE
                   </Link>
             </Menu.Item>
 
@@ -116,11 +144,13 @@ export default function SidebarExample(props) {
             })}
 
 
-
-            <span onClick={()=>logout()} className="float-right mr-4">
-            <i class="far fa-user ml-1"></i>
-            </span>
+            <div className="float-right mr-4">
+             <Popover placement="leftTop" content={content} trigger="click">
+        
+            <Avatar src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQpcLzYU8SsybUPTpqpI01wbVK1Ysqi5FU98w&usqp=CAU" size={30}  />
            
+            </Popover>
+            </div>
           </Header>
 
           <Content
@@ -130,7 +160,7 @@ export default function SidebarExample(props) {
             }}>
            
            <div className="site-layout-backg bg-dark text-white  " style={{ margin:0, minHeight: "100%" }}>
-             {/* {!url ?  <DashboardRouter url="/dashboard"/>: <DashboardRouter url={url} /> } */}
+          
              <DashboardRouter url={url} />
         </div>
 
@@ -139,7 +169,7 @@ export default function SidebarExample(props) {
                       style={{
                         background: 'dark',
                         textAlign: 'center',
-                        // borderTop: '1px solid #ededed',
+                        
                       }}>
                      Ant Design ©2020 Develop By Shohedul
                     </Footer>

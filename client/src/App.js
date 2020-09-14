@@ -11,6 +11,7 @@ import Dashboard  from './components/layout/Dashboardlayout';
 import './App.css';
 import AuthState from './context/authContext/AuthState'
 import ProfileState from './context/profileContext/profileState'
+import ProductState from './context/productContext/productState'
 import setAuthToken from './utils/setToken'
 
 
@@ -23,6 +24,7 @@ function App() {
   return (
            <AuthState>
              <ProfileState>
+               <ProductState>
             <BrowserRouter>
               <Fragment>
                 <div className='App'>
@@ -38,6 +40,7 @@ function App() {
                 </div>
               </Fragment>
             </BrowserRouter>
+            </ProductState>
             </ProfileState>
             </AuthState>
   );

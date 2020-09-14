@@ -3,7 +3,7 @@ import { Popconfirm, message } from 'antd';
 import AuthContext from '../../context/authContext/authContext'
 
 export default function Alluser() {
-const {getAllAuth,allAuth,deleteAuth, success} = useContext(AuthContext);
+const {getAllAuth,adminAuth,allAuth,deleteAuth, success} = useContext(AuthContext);
 
 useEffect(()=>{
   getAllAuth();
@@ -52,21 +52,26 @@ function cancel(e) {
                
               allAuth.map((auth,index)=>(
                
-                <tr>
+                <tr key={index}>
                 <td className="">{index+1}</td>
                <td className="">{auth.userName}</td>
                <td className="">{auth.email}</td>
                <td className="">{auth.role}</td>
                <td className="">
-               <Popconfirm
-                 title="Are you sure delete this task?"
-                 onConfirm={()=>confirm(auth._id)}
-                 onCancel={cancel}
-                 okText="Yes"
-                 cancelText="No"
-               >
-               <span><i className="fas fa-trash-alt"></i></span>
-               </Popconfirm>
+                 {adminAuth? (
+                        <Popconfirm
+                        title="Are you sure delete this task?"
+                        onConfirm={()=>confirm(auth._id)}
+                        onCancel={cancel}
+                        okText="Yes"
+                        cancelText="No"
+                        >
+                        <span><i className="fas fa-trash-alt"></i></span>
+                        </Popconfirm>
+                 ) : (
+                      <p>Disable</p>
+                 )}
+              
 
                </td>
           </tr>

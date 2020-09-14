@@ -24,7 +24,6 @@ const AuthState=(props)=> {
 
     const initialState={
         auth: localStorage.token ? true : false,
-        // auth:false
         authLoad:{},
         allAuth: [],
         adminAuth:false,
@@ -181,7 +180,6 @@ const deleteAuth = async (id)=>{
 
         // log out  test complete
         const logout=()=>{
-            console.log('click')
             dispatch({
                 type:LOG_OUT
             })
