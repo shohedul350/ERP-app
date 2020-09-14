@@ -7,7 +7,7 @@ const {
 
 const { adminProtect, protect } = require('../middleware/authenticate');
 
-router.route('/product').post(adminProtect, uploadValidation, imageupload.single('image'), uploadProduct);
+router.route('/product').post(adminProtect, imageupload.single('image'), uploadValidation, uploadProduct);
 router.route('/product').get(protect, getProduct);
 router.route('/product/:id').put(adminProtect, updateProduct);
 router.route('/product/:id').delete(adminProtect, deleteProduct);

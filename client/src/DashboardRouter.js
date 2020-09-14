@@ -10,6 +10,7 @@ import GetProfile from './components/companyProfile/GetProfile'
 import ChangePassword from './components/user/changePassword'
 import AllProduct from './components/product/GetProduct'
 import AddProduct from './components/product/addNew/Product'
+import EditProduct from './components/product/addNew/EditProduct'
 import AdminAccessRoute from './utils/adminAccessRoute'
 import ProctedRoute from './utils/proctedRoute'
 class DashboardRouter extends React.Component {
@@ -28,7 +29,7 @@ class DashboardRouter extends React.Component {
           path="/dashboard/all-auth"
           component={Alluser}
         />
-          <AdminAccessRoute
+          <ProctedRoute
           exact
           path="/dashboard/add-auth"
           component={AddAuth}
@@ -49,12 +50,17 @@ class DashboardRouter extends React.Component {
           path="/dashboard/add-product"
           component={AddProduct}
         />
+          <ProctedRoute
+          exact
+          path="/dashboard/edit-product"
+          component={EditProduct}
+        />
            <AdminAccessRoute
           exact
           path="/dashboard/create-profile"
           component={CreateProfile}
         />
-           <ProctedRoute
+          <ProctedRoute
           exact
           path="/dashboard/get-profile"
           component={GetProfile}

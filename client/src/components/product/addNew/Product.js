@@ -1,14 +1,16 @@
 import React, { useState, useContext} from "react";
 import { message } from 'antd';
 import ProductContext from '../../../context/productContext/productContext'
+import AuthContext from '../../../context/authContext/authContext'
 
 const Product=()=> {
 
 const {uploadProduct,error,serverMessage,success} = useContext(ProductContext);
+const {adminAuth} = useContext(AuthContext);
 // error message
 if(error && serverMessage){
   //show error message
-  console.log(serverMessage)
+
   message.error(serverMessage)
 
 }
@@ -16,6 +18,7 @@ if(error && serverMessage){
 if(success && serverMessage){
  // show success message
  message.success(serverMessage);
+ alert('upload')
 }
 
     const [formData,setFormData]=useState({
@@ -37,13 +40,15 @@ const onSubmit=e=>{
   e.preventDefault();
   
   uploadProduct(formData)
-  e.target.reset();
+  setFormData({
+    name:"",
+    price:"",
+    unit:"",
+    stock:"",
+    image:"",
+  })
 
-//   if(!formData.categories){
-//     alert('please select categories')
-//   }
-//   uploadData(formData)
-//   alert('Success')
+
 }
 
     return (
@@ -51,9 +56,9 @@ const onSubmit=e=>{
 
         <div className="row " style={{background:""}}>
                 <div className="col-md-6 offset-md-3">
-                <h3 className="text-center display-6">Upload product</h3>
+                <h4 className="text-center display-6">Upload product</h4>
                
-                  <form  onSubmit={onSubmit} enctype="multipart/form-data" >
+                  <form  onSubmit={onSubmit} encType="multipart/form-data" >
                   <div className="form-group">
 
                   </div>
@@ -66,11 +71,11 @@ const onSubmit=e=>{
                  required/>                    
                 </div> 
                     <div className="form-group">
-                      <label htmlFor="name"> Name: </label>
+                      <label htmlFor="name">Product Name: </label>
                       <input
                         type="text"
                         className="form-control"
-                        placeholder="Enter Your Name"
+                        placeholder="Enter here"
                         name="name"
                          value={name}
                          onChange={e=> onChange(e)}
@@ -84,7 +89,7 @@ const onSubmit=e=>{
                       <input
                         type="number"
                         className="form-control"
-                        placeholder="Enter Your Price"
+                        placeholder="Enter here"
                         name="price"
                         value={price}
                          onChange={e=> onChange(e)}
@@ -105,36 +110,28 @@ const onSubmit=e=>{
                     <option>Pice</option>
                 </select>
                                 </div>
-                    {/* <div className="form-group">
-                      <label htmlFor="descriptin">Product Descriptin: </label>
-                      <textarea
-                        rows="5"
-                        className="form-control"
-                        placeholder="Enter Your descriptin"
-                        name="info"
-                        value={info}
-                        onChange={e=> onChange(e)}>
-                       required
-                        </textarea>
-                    </div> */}
-
-                
-              
-
+        
                 <div className="form-group">
                       <label htmlFor="stock"> Stock: </label>
                       <input
                         type="number"
                         className="form-control"
-                        placeholder="Enter Your Stock"
+                        placeholder="Enter here"
                         name="stock"
                         value={stock}
                          onChange={e=> onChange(e)}
                          required
                       />
                     </div>
-
-                <button onSubmit={onSubmit} className="btn btn-primary my-3 d-block">Upload Product</button>
+             {adminAuth ? (
+              <button onSubmit={onSubmit} className="btn btn-primary my-3 d-block">Upload Product</button>
+             ):(
+               <div>
+              <button  className="btn btn-primary my-3 d-block" disabled>Disable</button>
+              <span className="text-info p-0">* Only Admin can upload</span>
+              </div>
+             )}
+               
                   </form>
                </div>
                </div>

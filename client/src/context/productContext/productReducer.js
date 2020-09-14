@@ -40,7 +40,9 @@ export default (state,action)=>{
             case  UPDATE_PRODUCT:
                 return{
                 ...state,
-                products:state.products.map(product=>product._id === action.payload._id ? action.payload:product)
+                products:state.products.map(product=>product._id === action.payload.updateProduct._id ? action.payload.updateProduct:product),
+                success:action.payload.success,
+                serverMessage: action.payload.msg,
                    }
   
 

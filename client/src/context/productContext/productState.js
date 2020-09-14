@@ -49,7 +49,6 @@ const getProduct=async()=>{
 
   //admmin upload product
   const uploadProduct= async data=>{
-    console.log(data)
     const formData = new FormData();
     Object.keys(data).forEach(key => formData.append(key, data[key]));
     const config = {

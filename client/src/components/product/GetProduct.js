@@ -2,11 +2,12 @@
 import React,{useContext}from 'react'
 import {Link} from 'react-router-dom'
 import { Spin,Popconfirm, message } from 'antd';
+import AuthContext from '../../context/authContext/authContext'
 import ProductContext from '../../context/productContext/productContext'
 import './style.css'
 const GetProduct = () => {
   const {products,deleteProduct,editFormFun,addCart} = useContext(ProductContext)
-
+  const {adminAuth} = useContext(AuthContext)
   function confirm(id) {
     deleteProduct(id);
     message.success('Delete Successfull');
@@ -25,35 +26,35 @@ const GetProduct = () => {
        
              ) : (
                 <div className="isProductListPageWrapper text-white">
-                <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                <div className="table-wrapper-scroll-y my-custom-scrollbar">
                 <table  className="table table-striped table-bordered table-dark text-center" style={{width:"100%"}}>
                <thead>
                 <tr>
-                  <th class="th-sm">Serial
+                  <th className="th-sm">Serial
                   </th>
-                  <th class="th-sm" style={{}}>Image
+                  <th className="th-sm" style={{}}>Image
                   </th>
-                  <th class="th-lg" style={{}}>Product Name
+                  <th className="th-lg" style={{}}>Product Name
                   </th>
-                  <th class="th-sm">Unit
+                  <th className="th-sm">Unit
                   </th>
-                  <th class="th-sm">Stock
+                  <th className="th-sm">Stock
                   </th>
-                  <th class="th-sm">Price
+                  <th className="th-sm">Price
                   </th>
-                  <th class="th-sm">Total
+                  <th className="th-sm">Total
                   </th>
-                  <th class="th-sm">InCart
+                  <th className="th-sm">InCart
                   </th>
-                  <th class="th-sm">Edit
+                  <th className="th-sm">Edit
                   </th>
-                  <th class="th-sm">Delete
+                  <th className="th-sm">Delete
                   </th>
                 </tr>
               </thead>
               <tbody>
              { products.map((product,index)=>(
-                <tr>
+                <tr key={index}>
                 <td className="">
                   {index+1}
                 </td>
@@ -67,7 +68,7 @@ const GetProduct = () => {
                  </td>
                <td className="">{product.name}</td>
                <td className="">{product.unit}</td>
-               <td className="">{product.stock  == 0 ? (<span class="alert alert-danger">
+               <td className="">{product.stock  == 0 ? (<span className="alert alert-danger">
    Out Of Stock
 </span>) : product.stock}</td>
                <td className="">{product.price}</td>
@@ -92,18 +93,31 @@ const GetProduct = () => {
                  )}
               
                </td>
-               <td className=""><Link  onClick={()=>editFormFun(product)} to="/dashboard/edit-product" ><i class="fas fa-edit"></i></Link></td>
+               <td className="">
+               {adminAuth? (
+                <Link  onClick={()=>editFormFun(product)} to="/dashboard/edit-product" ><i class="fas fa-edit"></i></Link>
+               ) : (
+                <button className="btn btn-info btn-sm" disabled>Edit</button>
+               ) }
+                 
+                 
+                 </td>
                <td>
-               <Popconfirm
-                 title="Are you sure delete this task?"
-                 onConfirm={()=>confirm(product._id)}
-                 onCancel={cancel}
-                 okText="Yes"
-                 cancelText="No"
-               >
-               <span className="text-danger"><i class="fas fa-trash-alt"></i></span>
-               </Popconfirm>
-       </td>    
+                 {adminAuth? (
+                      <Popconfirm
+                      title="Are you sure delete this task?"
+                      onConfirm={()=>confirm(product._id)}
+                      onCancel={cancel}
+                      okText="Yes"
+                      cancelText="No"
+                    >  
+                    <span className="text-danger"><i className="fas fa-trash-alt"></i></span>
+                    </Popconfirm>
+                 ) : (
+                  <button className="btn btn-danger btn-sm" disabled>Delete</button>
+                 )}
+                
+            </td>    
                 
           </tr>
                 )
