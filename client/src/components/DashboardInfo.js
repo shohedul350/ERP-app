@@ -9,10 +9,10 @@ import { Row, Col } from 'antd';
 const Dashboard = () => {
 const {getProfile,profile} = useContext(ProfileContext);
 
-  useEffect(() => {
-    getProfile()
-    // eslint-disable-next-line
-  },[]);
+  // useEffect(() => {
+  //   getProfile()
+  //   // eslint-disable-next-line
+  // },[]);
 const companyProfile = profile[0] || []
   return (
  <Widget companyProfile={companyProfile}/>

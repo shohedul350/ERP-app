@@ -3,19 +3,22 @@ import { Row, Col } from 'antd';
 import basicStyle from '../../config/basicStyle';
 import IsoWidgetsWrapper from './widgets-wrapper';
 import SaleWidget from './sale/sale-widget';
-import AuthContext from '../../context/authContext/authContext'
 
-
+import ProductContext from '../../context/productContext/productContext'
 
 
 export default function Index() {
-  const { getAuth,getAllAuth } = useContext(AuthContext);
-  useEffect(()=>{
-    getAuth();
-    getAllAuth()
-  // eslint-disable-line
-  },[])
+  
+const { products } = useContext(ProductContext);
 
+  const BlanceArray = products.map(function(product) {
+    return product.price*product.stock;
+  });
+  const totalBalance = BlanceArray.reduce(function(accumulator, currentValue) {
+    return accumulator + currentValue;;
+  }, 0);
+
+  
     const { rowStyle, colStyle } = basicStyle;
     const wisgetPageStyle = {
       display: 'flex',
@@ -36,10 +39,11 @@ export default function Index() {
               {/* Sale Widget */}
               <SaleWidget
                 label='TOTAL BLANCE'
-                price='1000'
+                price={totalBalance}
                 details="this is details"
                 fontColor="#F75D81"
               />
+    
             </IsoWidgetsWrapper>
           </Col>
 
@@ -47,7 +51,7 @@ export default function Index() {
             <IsoWidgetsWrapper>
               {/* Sale Widget */}
               <SaleWidget
-                label='TOTAL BLANCE'
+                label='SALE'
                 price='1000'
                 details="this is details"
                 fontColor="#F75D81"
