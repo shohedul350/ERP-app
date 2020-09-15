@@ -63,7 +63,7 @@ export default (state,action)=>{
            case CLEAR_EDITFORM:
                 return{
                 ...state,
-                 editForm:null
+                 editForm:{}
                 } 
            case CLEAR_SUCCESS:
                 return{

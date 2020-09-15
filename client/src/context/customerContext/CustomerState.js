@@ -21,7 +21,7 @@ import {
     const initialState={
           customers:[],
           customer: {},
-          editForm:null,
+          editForm:{},
           serverMessage:null,
           success: false,
           search:[]
@@ -129,9 +129,10 @@ const deleteCustomer = async (id)=>{
       }) 
       clearSuccess();
   } catch (err) {
+    console.log(err)
     dispatch({
       type:ERROR,
-      payload:err.response.data
+      payload:err
      })
      clearError();
   }

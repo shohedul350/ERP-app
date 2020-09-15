@@ -10,8 +10,8 @@ const { adminProtect, protect } = require('../middleware/authenticate');
 router.route('/customer').post(adminProtect, customerValidation, addCustomer);
 router.route('/customers').get(protect, getCustomers);
 router.route('/customer/:id').get(protect, getCustomer);
-router.route('/customer/:id').put(adminProtect, deleteCustomer);
-router.route('/customer/:id').delete(adminProtect, updateCustomer);
+router.route('/customer/:id').put(adminProtect, updateCustomer);
+router.route('/customer/:id').delete(adminProtect, deleteCustomer);
 router.route('/customer/:text').delete(adminProtect, searchCustomer);
 
 // router.get('/testCustomer, (req, res) => {
