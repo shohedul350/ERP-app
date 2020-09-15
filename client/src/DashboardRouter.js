@@ -1,6 +1,8 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
 import Widget from './components/Widgets/index'
+import AdminAccessRoute from './utils/adminAccessRoute'
+import ProctedRoute from './utils/proctedRoute'
 import Alluser from './components/user/allUser'
 import AddAuth from './components/user/addAuth'
 import MyProfile from './components/user/myProfile'
@@ -11,8 +13,9 @@ import ChangePassword from './components/user/changePassword'
 import AllProduct from './components/product/GetProduct'
 import AddProduct from './components/product/addNew/Product'
 import EditProduct from './components/product/addNew/EditProduct'
-import AdminAccessRoute from './utils/adminAccessRoute'
-import ProctedRoute from './utils/proctedRoute'
+import AddCustomer from './components/customer/addcustomer'
+import GetCustomers from './components/customer/getCustomers'
+import CustomerDetails from './components/customer/customerdetails'
 class DashboardRouter extends React.Component {
   render() {
   
@@ -55,7 +58,23 @@ class DashboardRouter extends React.Component {
           path="/dashboard/edit-product"
           component={EditProduct}
         />
-           <AdminAccessRoute
+
+        <ProctedRoute
+          exact
+          path="/dashboard/add-customer"
+          component={AddCustomer}
+        />
+        <ProctedRoute
+          exact
+          path="/dashboard/get-customers"
+          component={GetCustomers}
+        />
+        <ProctedRoute
+          exact
+          path="/dashboard/customer-details"
+          component={CustomerDetails}
+        />
+          <AdminAccessRoute
           exact
           path="/dashboard/create-profile"
           component={CreateProfile}

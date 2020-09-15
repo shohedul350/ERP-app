@@ -15,7 +15,7 @@ exports.addCustomer = asyncHandler(async (req, res) => {
 
 // get all customers
 exports.getCustomers = asyncHandler(async (req, res) => {
-  const getCustomers = await Customer.find().populate('invoice');
+  const getCustomers = await Customer.find();
   if (!getCustomers) {
     return res.status(404).json({ msg: 'Customers Not Found', success: false });
   }

@@ -117,6 +117,22 @@ export default function SidebarExample(props) {
 
           </SubMenu>
 
+             {/* customer menu */}
+             <SubMenu key="sub5" icon={<AppstoreOutlined />} title="CUSTOMER">
+            <Menu.Item key="14">
+            <Link  to="/dashboard/add-customer">
+                   ADD CUSTOMER
+                  </Link>
+            </Menu.Item>
+            <Menu.Item key="15">
+            <Link  to="/dashboard/get-customers">
+                   GET CUSTOMERS
+                  </Link>
+            </Menu.Item>
+
+
+          </SubMenu>
+
           {/* companyProfile menu item */}
 
           <SubMenu key="sub3" icon={<AppstoreOutlined />} title="COMPANY PROFILE">
