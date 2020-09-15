@@ -13,6 +13,7 @@ import AuthState from './context/authContext/AuthState'
 import ProfileState from './context/profileContext/profileState'
 import ProductState from './context/productContext/productState'
 import CustomerState from './context/customerContext/CustomerState'
+import InvoiceState from './context/invoiceContext/InvoiceState'
 import setAuthToken from './utils/setToken'
 
 
@@ -27,6 +28,7 @@ function App() {
              <ProfileState>
                <ProductState>
                  <CustomerState>
+                   <InvoiceState>
             <BrowserRouter>
               <Fragment>
                 <div className='App'>
@@ -42,6 +44,7 @@ function App() {
                 </div>
               </Fragment>
             </BrowserRouter>
+            </InvoiceState>
             </CustomerState>
             </ProductState>
             </ProfileState>

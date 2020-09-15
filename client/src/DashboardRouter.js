@@ -16,6 +16,7 @@ import EditProduct from './components/product/addNew/EditProduct'
 import AddCustomer from './components/customer/addcustomer'
 import GetCustomers from './components/customer/getCustomers'
 import CustomerDetails from './components/customer/customerdetails'
+import Invoice from './components/invoice/Cart'
 class DashboardRouter extends React.Component {
   render() {
   
@@ -78,6 +79,11 @@ class DashboardRouter extends React.Component {
           exact
           path="/dashboard/create-profile"
           component={CreateProfile}
+        />
+         <AdminAccessRoute
+          exact
+          path="/dashboard/create-invoice"
+          component={Invoice}
         />
           <ProctedRoute
           exact

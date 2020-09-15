@@ -133,6 +133,18 @@ export default function SidebarExample(props) {
 
           </SubMenu>
 
+              {/* invoice menu */}
+              <SubMenu key="sub6" icon={<AppstoreOutlined />} title="INVOICE">
+            <Menu.Item key="15">
+            <Link  to="/dashboard/create-invoice">
+                 CREATE INVOICE
+                  </Link>
+            </Menu.Item>
+         
+
+
+          </SubMenu>
+
           {/* companyProfile menu item */}
 
           <SubMenu key="sub3" icon={<AppstoreOutlined />} title="COMPANY PROFILE">
