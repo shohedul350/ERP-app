@@ -16,7 +16,7 @@ export default function CreateProfile() {
        // show success message
        message.success(serverMessage);
       }
-  })// error message
+  },[serverMessage])// error message
 
 const layout = {
   labelCol: {

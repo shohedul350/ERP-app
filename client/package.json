@@ -8,10 +8,12 @@
     "@testing-library/user-event": "^7.2.1",
     "antd": "^4.6.1",
     "axios": "^0.20.0",
+    "moment": "^2.28.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "react-to-print": "^2.10.0",
     "styled-components": "^5.1.1",
     "styled-theme": "^0.3.3"
   },

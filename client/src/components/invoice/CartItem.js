@@ -54,7 +54,7 @@ export default function CartItem(props) {
   const [email, setEmail] = useState('');
   const [products, setProducts] = useState(items);
 
-  console.log(customerId)
+
 
   const increment=(id,incre)=>{
         let tempProduct = [...products];
@@ -113,7 +113,6 @@ export default function CartItem(props) {
           if( orderNumber == "" ||  address == "" || mobile == "" || email=="" || products==[]){
             message.error('Fill All File');
           }else{
-            console.log(invoiceObject)
               addInvoice(invoiceObject)
             // if(success){
               message.success('Successfully Complete Invoice');

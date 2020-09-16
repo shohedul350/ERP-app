@@ -1,5 +1,5 @@
 import React,{useContext,useEffect} from 'react'
-import { Spin,Popconfirm, message } from 'antd';
+import { Spin, message } from 'antd';
 import {Link} from 'react-router-dom'
 import CustomerContext from '../../context/customerContext/CustomerContext'
 import EditCustomerModal from './EditCustomerModal'
@@ -50,7 +50,7 @@ const {getCustomers,customers,success,serverMessage,editFormFun} = useContext(Cu
                <td className="">{customer.address}</td>
                <td className="">{customer.mobile}</td>
                <td className="">{customer.email}</td>
-               <td className=""><Link to={`customer-details/${customer.orderNumber}`}><button>view</button></Link></td>
+               <td className=""><Link to={`/dashboard/customer-details/${customer.orderNumber}`}><button>view</button></Link></td>
                <td><span onClick={() => handleEdit(customer)} data-toggle="modal" data-target="#exampleModal" style={{ cursor: 'pointer' }} ><i  className="fas fa-pencil-alt"></i></span></td>
           </tr>
           

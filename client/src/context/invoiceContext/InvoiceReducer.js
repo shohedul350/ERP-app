@@ -1,5 +1,5 @@
 import {
-  GET_INVOICE,
+  GET_INVOICES,
   GET_SINGLE_INVOICE,
   ADD_INVOICE,
   UPDATE_INVOICE,
@@ -21,11 +21,12 @@ export default (state,action)=>{
                 ...state,
                success: true
             }
-         case  GET_INVOICE:
+         case  GET_INVOICES:
             return{
                 ...state,
-               invoices: action.payload,
-               success: true
+               invoices: action.payload.getAllInvoice,
+               success: action.payload.success,
+               serverMessage:action.payload.msg
             }
           case GET_SINGLE_INVOICE:
             return{
@@ -63,7 +64,8 @@ export default (state,action)=>{
         case ERROR:
             return{
                     ...state,
-                    error:action.payload
+                    serverMessage:action.payload.msg,
+                    success:action.payload.success,
                  }
         case CLEAR_ERROR:
              return{

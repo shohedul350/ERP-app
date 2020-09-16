@@ -32,10 +32,10 @@ exports.getInvoices = asyncHandler(async (req, res) => {
   const orderNumber = req.params.orderNumber
 
   const getAllInvoice = await Invoice.find({ orderNumber });
-  if (!getAllInvoice) {
+  if (!getAllInvoice.length) {
     return res.status(404).json({ msg: 'Invoice Not Found', success: false });
   }
-  return res.status(200).json({ msg: 'Invoice Create Success', success: true, getAllInvoice });
+  return res.status(200).json({ msg: 'invoice loaded', success: true, getAllInvoice });
 });
 
 // get invoices

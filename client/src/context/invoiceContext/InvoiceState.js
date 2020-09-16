@@ -3,7 +3,7 @@ import Axios from 'axios'
 import InvoiceContext from '../invoiceContext/InvoiceContext'
 import InvoiceReducer from '../invoiceContext/InvoiceReducer'
 import {
-  GET_INVOICE,
+  GET_INVOICES,
   GET_SINGLE_INVOICE,
   ADD_INVOICE,
   UPDATE_INVOICE,
@@ -20,30 +20,31 @@ import {
 
     const initialState={
           invoices:[],
-          invoice: null,
+          invoice: {},
           cart:[],
           prod:[],
           success:false,
           editForm:null,
-          error:null
+          error:null,
+          serverMessage:null
     }
 
     const [state,dispatch]=useReducer(InvoiceReducer,initialState)
 
 // admin get induvisula customer Invoice
-const getInvoice=async(orderNumber)=>{
-
+const getInvoices=async(orderNumber)=>{
+console.log(orderNumber)
   try {
-    const res=await Axios.get(`/api/allInvoice/${orderNumber}`)
+    const res=await Axios.get(`/api/invoice/${orderNumber}`)
     dispatch({
-      type:GET_INVOICE,
-      payload:res.data.docs
+      type:GET_INVOICES,
+      payload:res.data
   })
   } catch (error) {
     console.log(error)
     dispatch({
       type:ERROR,
-      payload:error
+      payload:error.response.data
    });
   }
 }
@@ -52,7 +53,7 @@ const getInvoice=async(orderNumber)=>{
 // admin get single Invoice
 const getSingleInvoice=async(invoiceId)=>{
   try {
-    const res=await Axios.get(`/api/singleInvoice/${invoiceId}`)
+    const res=await Axios.get(`/api/invoice/${invoiceId}`)
     dispatch({
       type:GET_SINGLE_INVOICE,
       payload:res.data
@@ -76,7 +77,7 @@ const getSingleInvoice=async(invoiceId)=>{
      };
 
 try{
-  const res= await Axios.post('/api/addInvoice',data,config)
+  const res= await Axios.post('/api/invoice',data,config)
   dispatch({ 
       type:ADD_INVOICE,
       payload:res.data
@@ -99,7 +100,7 @@ const deleteInvoice = async (id)=>{
         type:DELETE_INVOICE,
         payload:res.data
     })
-    getInvoice()
+ 
   
   }catch (error) {
     console.log(error)
@@ -195,7 +196,7 @@ const editFormFun=(invoice)=>{
        invoices:state.invoices,
        invoice:state.invoice,
        prod:state.prod,
-       getInvoice,
+       getInvoices,
        getSingleInvoice,
        addInvoice,
        success:state.success,
