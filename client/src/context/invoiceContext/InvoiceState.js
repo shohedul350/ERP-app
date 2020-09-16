@@ -25,15 +25,14 @@ import {
           prod:[],
           success:false,
           editForm:null,
-          error:null,
+          error:false,
           serverMessage:null
     }
 
-    const [state,dispatch]=useReducer(InvoiceReducer,initialState)
+const [state,dispatch]=useReducer(InvoiceReducer,initialState)
 
 // admin get induvisula customer Invoice
 const getInvoices=async(orderNumber)=>{
-console.log(orderNumber)
   try {
     const res=await Axios.get(`/api/invoice/${orderNumber}`)
     dispatch({
@@ -41,7 +40,6 @@ console.log(orderNumber)
       payload:res.data
   })
   } catch (error) {
-    console.log(error)
     dispatch({
       type:ERROR,
       payload:error.response.data
@@ -52,8 +50,10 @@ console.log(orderNumber)
 
 // admin get single Invoice
 const getSingleInvoice=async(invoiceId)=>{
+
   try {
-    const res=await Axios.get(`/api/invoice/${invoiceId}`)
+    const res=await Axios.get(`/api/single-invoice/${invoiceId}`)
+    console.log(res.data)
     dispatch({
       type:GET_SINGLE_INVOICE,
       payload:res.data
@@ -62,7 +62,7 @@ const getSingleInvoice=async(invoiceId)=>{
     console.log(error)
     dispatch({
       type:ERROR,
-      payload:error
+      payload:error.response.data
    });
   }
 }
@@ -153,22 +153,25 @@ const editFormFun=(invoice)=>{
   
 
 
-//clear success
- const clearSuccess =()=>{
-        setTimeout(() => { 
-        dispatch({
-           type:CLEAR_SUCCESS,
-        })
-       }, 3000);
-     }
-// clear error
- const clearError =()=>{
-      setTimeout(() => { 
+// clear error after 3 sec call
+
+const clearError=()=>{
+  setTimeout(() => { 
       dispatch({
          type:CLEAR_ERROR,
       })
      }, 3000);
-   }
+}
+
+
+// clear success after 3 sec call
+const clearSuccess =()=>{
+  setTimeout(() => { 
+  dispatch({
+     type:CLEAR_SUCCESS,
+  })
+ }, 3000);
+}
 
 
  /// add bill 

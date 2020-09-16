@@ -18,6 +18,7 @@ import GetCustomers from './components/customer/getCustomers'
 import CustomerDetails from './components/customer/customerdetails'
 import Invoice from './components/invoice/Cart'
 import InvoicePrint from './components/invoice/invoicePrint'
+// import Invoicep from './components/invoice/invoice'
 class DashboardRouter extends React.Component {
   render() {
   

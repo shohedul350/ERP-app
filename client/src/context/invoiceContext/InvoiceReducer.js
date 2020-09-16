@@ -15,31 +15,41 @@ import {
 
 export default (state,action)=>{
     switch(action.type){
-        
-        case  ADD_INVOICE:
+        case  GET_INVOICES:
             return{
-                ...state,
-               success: true
-            }
-         case  GET_INVOICES:
-            return{
-                ...state,
+               ...state,
                invoices: action.payload.getAllInvoice,
                success: action.payload.success,
                serverMessage:action.payload.msg
-            }
-          case GET_SINGLE_INVOICE:
+                  }
+      case ERROR:
             return{
                 ...state,
-               invoice: action.payload,
-               success: true
+                serverMessage:action.payload.msg,
+                error:true,
+                success: false,
+                 }
+        case  ADD_INVOICE:
+            return{
+                ...state,
+                invoices:state.invoices.map(invoice=>invoice._id === action.payload.newInvoice._id ? action.payload.newInvoice:invoice),
+                success: action.payload.success,
+                serverMessage:action.payload.msg
+            }
+        case GET_SINGLE_INVOICE:
+            return{
+                ...state,
+               invoice: action.payload.invoice,
+               success: action.payload.success,
+               serverMessage:action.payload.msg,
             }
 
             case  UPDATE_INVOICE:
                 return{
                 ...state,
                 invoices:state.invoices.map(invoice=>invoice._id === action.payload._id ? action.payload:invoice),
-                success: true
+                success: action.payload.success,
+                serverMessage:action.payload.msg,
                    }
 
 
@@ -56,22 +66,6 @@ export default (state,action)=>{
                  editForm:null
                 } 
 
-         case CLEAR_SUCCESS:
-            return{
-                    ...state,
-                    success:false
-                }
-        case ERROR:
-            return{
-                    ...state,
-                    serverMessage:action.payload.msg,
-                    success:action.payload.success,
-                 }
-        case CLEAR_ERROR:
-             return{
-                    ...state,
-                    error:null
-                         }
        case ADD_CART:
                 return{
                 ...state,
@@ -79,6 +73,21 @@ export default (state,action)=>{
                 cart:[...state.cart,action.payload.singleInvoice],
                 prod:[...state.prod,action.payload.pro]
                 }
+        case CLEAR_SUCCESS:
+                    return{
+                    ...state,
+                    success:false,
+                    error:false,
+                    serverMessage:null,
+                     }
+         
+            case CLEAR_ERROR:
+                    return{
+                    ...state,
+                    success: false,
+                    error: false,
+                    serverMessage: null
+                     }
         
 
         default:

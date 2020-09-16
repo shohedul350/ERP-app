@@ -33,6 +33,7 @@
 .spin{
   text-align: center;
   padding:50px;
-
- 
+}
+.Image-Opacity{
+  opacity: 0.5;
 }

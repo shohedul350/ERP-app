@@ -4,7 +4,7 @@ import { Spin, message } from 'antd';
 import moment from "moment";
 import Context from '../../context/invoiceContext/InvoiceContext'
 export default function CustomerDetails(props) {
-const {getInvoices,invoices,addCart,serverMessage,success} = useContext(Context)
+const {getInvoices,invoices,addCart,serverMessage,success,getSingleInvoice} = useContext(Context)
 
     useEffect(()=>{
         getInvoices(props.match.params.orderNumber);
@@ -56,7 +56,7 @@ const {getInvoices,invoices,addCart,serverMessage,success} = useContext(Context)
               <td className="text-uppercase">{index+1}</td>
             <td className="text-uppercase">{invoice.orderNumber}</td>
               <td className="text-uppercase">{moment(invoice.createdAt).format('MMMM Do YYYY')}</td>
-            <td className=""><Link to={`/dashboard/invoice-print/${invoice._id}`}><button>view</button></Link></td>
+            <td className=""><Link to={`/dashboard/invoice-print/${invoice._id}`}><button onClick={()=>getSingleInvoice(invoice._id)}>view</button></Link></td>
             <td className="">
             <button className="btn btn-info"
                      onClick={()=>addCart(invoice._id)}
