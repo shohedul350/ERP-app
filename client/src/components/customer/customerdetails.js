@@ -33,15 +33,15 @@ const {getInvoices,invoices,addCart,serverMessage,success,getSingleInvoice} = us
                 <Spin size="large"/>
             </div>
     ) : (
-        <div className="table-wrapper-scroll-y my-custom-scrollbar bg-dark" >
-            <Link to="/dashboard/create-bill">Create bill</Link>
-    <table className="table table-sm table-dark table-striped text-center">
+        <div className="table-wrapper-scroll-y my-custom-scrollbar bg-dark p-5" >
+    
+    <table className="table table-sm table-dark text-center">
     <thead>
       <tr>
         <th scope="col">Serial</th>
         <th scope="col">Order Number</th>
-        <th scope="col">Date</th>
-        <th scope="col">Details</th>
+        <th scope="col">Invoice Date</th>
+        <th scope="col">Invoive Details</th>
         <th scope="col">Add To Bill</th>
         <th scope="col">Action</th>
       </tr>
@@ -56,7 +56,7 @@ const {getInvoices,invoices,addCart,serverMessage,success,getSingleInvoice} = us
               <td className="text-uppercase">{index+1}</td>
             <td className="text-uppercase">{invoice.orderNumber}</td>
               <td className="text-uppercase">{moment(invoice.createdAt).format('MMMM Do YYYY')}</td>
-            <td className=""><Link to={`/dashboard/invoice-print/${invoice._id}`}><button onClick={()=>getSingleInvoice(invoice._id)}>view</button></Link></td>
+            <td className=""><Link to={`/dashboard/invoice-print/${invoice._id}`}><button onClick={()=>getSingleInvoice(invoice._id)} className="btn btn-info btn-sm">view</button></Link></td>
             <td className="">
             <button className="btn btn-info"
                      onClick={()=>addCart(invoice._id)}

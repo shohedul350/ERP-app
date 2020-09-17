@@ -74,7 +74,7 @@ class DashboardRouter extends React.Component {
         />
         <ProctedRoute
           exact
-          path="/dashboard/:customer-details/:orderNumber"
+          path="/dashboard/customer-details/:orderNumber"
           component={CustomerDetails}
         />
           <AdminAccessRoute

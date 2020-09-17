@@ -1,16 +1,29 @@
 
-import React,{useContext}from 'react'
+import React,{useContext,useEffect}from 'react'
 import {Link} from 'react-router-dom'
 import { Spin,Popconfirm, message } from 'antd';
 import AuthContext from '../../context/authContext/authContext'
 import ProductContext from '../../context/productContext/productContext'
 import './style.css'
 const GetProduct = () => {
-  const {products,deleteProduct,editFormFun,addCart} = useContext(ProductContext)
+  const {products,deleteProduct,editFormFun,addCart,error,serverMessage,success} = useContext(ProductContext)
   const {adminAuth} = useContext(AuthContext)
+
+  if(error && serverMessage){
+    //show error message
+    message.error(serverMessage)
+  
+  }
+  // success login 
+  if(success && serverMessage ){
+     message.success(serverMessage);
+  }
+  
+
+    
   function confirm(id) {
     deleteProduct(id);
-    message.success('Delete Successfull');
+   
   }
   
   function cancel(e) {
@@ -68,13 +81,13 @@ const GetProduct = () => {
                  </td>
                <td className="">{product.name}</td>
                <td className="">{product.unit}</td>
-               <td className="">{product.stock  == 0 ? (<span className="alert alert-danger">
+               <td className="">{product.stock  <= 0 ? (<span className="alert alert-danger p-1" style={{}}>
    Out Of Stock
 </span>) : product.stock}</td>
                <td className="">{product.price}</td>
                <td className="">{product.price*product.stock}</td>
                <td className="" >
-                 {product.stock  == 0 ? ( <button className="btn btn-info btn-sm card-size p-0"
+                 {product.stock  <= 0 ? ( <button className="btn btn-info btn-sm"
                                    disabled> <i className="fas fa-cart-plus"/></button>) : (
                     <button className="btn btn-info btn-sm "
                     onClick={()=>addCart(product._id)}

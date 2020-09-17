@@ -21,7 +21,7 @@ export default (state,action)=>{
                 return{
                 ...state,
                 customers: action.payload.getCustomers,
-                serverMessage:action.payload.msg,
+                serverMessage:null,
                 success: action.payload.success,
             }
            case GET_CUSTOMER:
@@ -48,7 +48,7 @@ export default (state,action)=>{
             case DELETE_CUSTOMER:
                 return {
                 ...state,
-                customers: state.customers.filter(customer => customer._id !== action.payload.deleteCustomer),
+                customers: state.customers.filter(customer => customer._id !== action.payload),
                 success:action.payload.success,
                 serverMessage: action.payload.msg,
                 }

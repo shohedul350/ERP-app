@@ -3,20 +3,19 @@ import { Form, Input, Button,message } from 'antd';
 import CustomerContext from '../../context/customerContext/CustomerContext'
 export default function CreateProfile() {
   const {addCustomer,error,serverMessage,success} = useContext(CustomerContext)
-
-  useEffect(()=>{
-    if(error && serverMessage){
-        //show error message
-        console.log(serverMessage)
-        message.error(serverMessage)
-      
-      }
-      // success aded 
-      if(success && serverMessage){
-       // show success message
-       message.success(serverMessage);
-      }
-  },[serverMessage])// error message
+  
+  if(error && serverMessage){
+    //show error message
+    console.log(serverMessage)
+    message.error(serverMessage)
+  
+  }
+  // success aded 
+  if(success && serverMessage){
+   // show success message
+   message.success(serverMessage);
+  }
+ 
 
 const layout = {
   labelCol: {

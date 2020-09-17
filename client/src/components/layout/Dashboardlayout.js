@@ -19,12 +19,11 @@ import ProductContext from '../../context/productContext/productContext'
 
 export default function SidebarExample(props) {
   const { url } = props.match;
-  const {getAuth,getAllAuth,logout}=useContext(AdminContext);
+  const {getAuth,logout}=useContext(AdminContext);
   const {getProfile,profile}=useContext(ProfileContext);
   const {getProduct}=useContext(ProductContext)
   useEffect(()=>{
     getAuth();
-    getAllAuth();
     getProfile();
     getProduct()
     // eslint-disable-next-line

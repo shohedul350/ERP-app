@@ -16,51 +16,53 @@ export default function CustomerInvoice() {
     const currentDate = moment().format('MMMM Do YYYY, h:mm:ss a');
    
     return (
-    <div className="p-5 bg-white text-dark">
+    <div className="bg-white text-dark">
    {!products && !customer ? (
         <div className="spin">
         <Spin size="large"/>
     </div>
    ) :  (
-       <div className="">
-<div className="card ">
+       <div className="p-5" style={{height:"500px", width:"100%"}}>
+    <div className="card mt-5">
                 <div className="card-header">
-                Invoice
-                <strong> {currentDate}</strong> 
-                <span className="float-right"> <strong>Status:</strong>Delevired</span>
+                <div class="d-flex justify-content-around">
+   <div>  Invoice id: {sigInvoice._id}</div>
+                    <div> <strong> {currentDate}</strong> </div>
+                    <div> <span className="float-right"> <strong>Status:</strong>Delevired</span></div>
                 </div>
-                    <div className="card-body" style={{display:"flex"}}>
-                    <div className="row mb-4 ">
-                                <div className="col-sm-5 ">
-                                <h6 className="mb-3 ">From:</h6>
-                                <div>
-                                    <strong>{companyProfile.companyName}</strong>
+              
+               
+                </div>
+                    <div className="card-body p-5 m-0">
+
+                                <div class="float-left pl-5">
+                                        <h6 className="mb-2 text-dark ">From:</h6><div>
+                                        <strong>{companyProfile.companyName}</strong>
+                                        </div>
+                                        <div>Address: {companyProfile.companyAddress}</div>
+                                        <div>Email: {companyProfile.companyEmail}</div>
+                                        <div>Phone: {companyProfile.companyMobile}</div>
                                 </div>
-                                <div>Address: {companyProfile.companyAddress}</div>
-                                <div>Email: {companyProfile.companyEmail}</div>
-                                 <div>Phone: {companyProfile.companyMobile}</div>
+                            
+                                <div class="float-right pr-5">
+                                        <h6 className="mb-2 text-dark">To:</h6><div>
+                                        <strong>Order Number: {orderNumber}</strong>
+                                        </div>
+                                        <div>Address: {address}</div>
+                                        <div>Email: {email}</div>
+                                        <div>Phone: {mobile}</div>
                                 </div>
-                    
-                    <div className="col-sm-5">
-                        <h6 className="mb-3">To:</h6>
-                        <div>
-                        <strong>Order Number: {orderNumber}</strong>
-                        </div>
-                        <div>Address: {address}</div>
-                                    <div>Email: {email}</div>
-                        <div>Phone: {mobile}</div>
+                            
                     </div>
-                    
-                    
-                    
-                    </div>
-                    </div>
+                 
+
+
       </div>
      
          
 
-    <div className="customer product details m-auto text-center ">
-        <table className="table  table-sm table-bordered table-striped text-center " style={{}}>
+    <div className=" m-auto text-center ">
+        <table className="table  table-sm table-bordered table-striped text-center ">
                 <thead>   
                 <tr>
                     <th scope="col">Serial No</th>

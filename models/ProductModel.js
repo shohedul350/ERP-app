@@ -14,9 +14,9 @@ const productSchema = mongoose.Schema({
     type: Number,
     default: 0,
   },
-  unit:{
-       type: String,
-       
+  unit: {
+    type: String,
+
   },
   image: {
     type: String,

@@ -13,10 +13,7 @@ export default function CartItem(props) {
   const { getCustomer,customers } = useContext(CustomerContext);
   const { profile } = useContext(ProfileContext);
   const { addInvoice,success,error } = useContext(InvoiceContext);
-  if(error !== null){
-    console.log(error.msg)
-    console.log(error)
-  }
+
   const history = createBrowserHistory();
     useEffect(()=>{
       getCustomer()

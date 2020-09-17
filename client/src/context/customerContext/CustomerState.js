@@ -17,13 +17,14 @@ import {
 } from '../type'
 
  const CustomerState=(props)=> {
-
+ 
     const initialState={
           customers:[],
           customer: {},
           editForm:{},
           serverMessage:null,
           success: false,
+          error: false,
           search:[]
     }
 
@@ -95,10 +96,10 @@ try{
 // delete customer
 const deleteCustomer = async (id)=>{
   try{
-       const res=await Axios.delete(`/api/deleteCustomer/${id}`)
+       const res=await Axios.delete(`/api/customer/${id}`)
       dispatch({
         type:DELETE_CUSTOMER,
-        payload:res.data
+        payload:res.data.deleteCustomer
     })
     clearSuccess();
 
@@ -129,7 +130,7 @@ const deleteCustomer = async (id)=>{
       }) 
       clearSuccess();
   } catch (err) {
-    console.log(err)
+
     dispatch({
       type:ERROR,
       payload:err
@@ -163,7 +164,7 @@ const clearError=()=>{
       dispatch({
          type:CLEAR_ERROR,
       })
-     }, 3000);
+     }, 4000);
 }
 
 
@@ -173,7 +174,7 @@ const clearSuccess =()=>{
   dispatch({
      type:CLEAR_SUCCESS,
   })
- }, 3000);
+ }, 4000);
 }
 
   
@@ -186,8 +187,10 @@ const clearSuccess =()=>{
        getCustomers,
        getCustomer,
        addCustomer,
-       serverMessage:state.message,
+       success: state.success,
+       serverMessage:state.serverMessage,
        editForm:state.editForm,
+       error:state.error,
        deleteCustomer,
        updateCustomer,
        editFormFun,

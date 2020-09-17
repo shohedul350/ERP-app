@@ -102,6 +102,13 @@ exports.deleteAuth = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, msg: 'delete success', deleteAuth });
 });
 
+// update user role
+exports.updateUserRole = asyncHandler(async (req, res) => {
+  const updateAuth = await
+  Auth.findByIdAndUpdate(req.params.id, req.body, { new: true });
+  return res.status(200).json({ msg: 'Change user role', success: true, updateAuth });
+});
+
 // change password
 exports.changePassword = asyncHandler(async (req, res) => {
   const { oldPassword, newPassword } = req.body;

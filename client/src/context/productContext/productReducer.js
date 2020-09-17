@@ -32,9 +32,10 @@ export default (state,action)=>{
                 case DELETE_PRODUCT:
                     return {
                       ...state,
-                      products: state.products.filter(product => product._id !== action.payload.deleteProduct),
+                      products: state.products.filter(product => product._id !==  action.payload.deleteProduct._id),
                       success:action.payload.success,
                       serverMessage: action.payload.msg,
+                      error:false,
                     }
 
             case  UPDATE_PRODUCT:
