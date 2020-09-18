@@ -11,7 +11,10 @@ import {
     ERROR,
     CLEAR_ERROR,
     SEND_FORGET_REQUEST,
-    RESET_REQUEST
+    RESET_REQUEST,
+    UPDATE_USER_ROLE,
+    EDIT_FORM,
+    CLEAR_EDITFORM
 
 } from '../type'
 
@@ -24,7 +27,6 @@ export default (state,action)=>{
                 auth:true,
                 success:action.payload.success,
                 serverMessage: action.payload.msg,
-                isReload:false
             }
 
         case SET_ADMIN:
@@ -50,12 +52,12 @@ export default (state,action)=>{
                 allAuth:action.payload,
                 success:action.payload.success,
                 }
+
         case SUCCES_REGISTER:
             return{
                 ...state,
                 success:action.payload.success,
                 serverMessage: action.payload.msg
-
             }
 
 
@@ -87,29 +89,49 @@ export default (state,action)=>{
                 error:false,
                 serverMessage:null,
                      }
-           case ERROR:
+        case ERROR:
             return{
               ...state,
                 success: false,
                 error: true,
                 serverMessage:action.payload.msg
                     }
-    case CLEAR_ERROR:
-             return{
+        case CLEAR_ERROR:
+              return{
                 ...state,
                 success: false,
                 error: false,
                 serverMessage: null
             }
-   case  SEND_FORGET_REQUEST:
-    case   RESET_REQUEST:
+
+       case  SEND_FORGET_REQUEST:
+       case   RESET_REQUEST:
    
             return{
                 ...state,
                 success:action.payload.success,
                 serverMessage: action.payload.msg
-
             }
+
+        case  UPDATE_USER_ROLE:
+                return{
+                ...state,
+                allAuth:state.allAuth.map(auth=>auth._id === action.payload.updateAuth._id ? action.payload.updateAuth:auth),
+                success:action.payload.success,
+                serverMessage: action.payload.msg,
+                   }
+        case EDIT_FORM:
+                return{
+                ...state,
+                editForm:action.payload
+                         
+                }
+
+        case CLEAR_EDITFORM:
+                return{
+                ...state,
+                 editForm:{}
+                } 
 
         default:
             return state

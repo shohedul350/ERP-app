@@ -7,19 +7,19 @@ const Product=()=> {
 
 const {uploadProduct,error,serverMessage,success} = useContext(ProductContext);
 const {adminAuth} = useContext(AuthContext);
-// error message
+
+
 if(error && serverMessage){
   //show error message
-
   message.error(serverMessage)
 
 }
-// success aded 
-if(success && serverMessage){
- // show success message
- message.success(serverMessage);
- alert('upload')
+// success login 
+if(success && serverMessage ){
+   // show success message
+   message.success(serverMessage);
 }
+
 
     const [formData,setFormData]=useState({
       name:"",

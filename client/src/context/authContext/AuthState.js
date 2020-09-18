@@ -15,6 +15,9 @@ import {
         CHANGE_PASSWORD,
         ERROR,
         CLEAR_ERROR,
+        EDIT_FORM,
+        CLEAR_EDITFORM,
+        UPDATE_USER_ROLE,
         SEND_FORGET_REQUEST,
         RESET_REQUEST
     
@@ -31,7 +34,7 @@ const AuthState=(props)=> {
         success:false,
         error:false,
         serverMessage:null,
-        isReload:true
+        editForm:{},
          
     }
 
@@ -184,7 +187,50 @@ const deleteAuth = async (id)=>{
                 type:LOG_OUT
             })
         }
+  
 
+   //update user role
+   const updateUserRole=async(auth)=>{
+
+    const config={
+        header:{
+            'Content-Type':'application/json'
+        }
+    }
+    const res=await axios.put(`/api/change-auth-role/${auth._id}`,auth,config)
+    try {
+         
+        dispatch({
+            type:UPDATE_USER_ROLE,
+            payload:res.data
+        }) 
+        clearSuccess();
+    } catch (err) {
+      dispatch({
+        type:ERROR,
+        payload:err.response.data
+       })
+       clearError();
+    }
+   
+  }
+  
+  //edit user role form
+  const editFormFun=(auth)=>{
+        dispatch({
+            type:EDIT_FORM,
+            payload:auth
+        })  
+    }
+    
+    //clear edit form
+    const clearEditForm=()=>{
+        dispatch({
+            type:CLEAR_EDITFORM,
+            
+        }) 
+    }
+    
 
 
  
@@ -300,7 +346,6 @@ const resetRequest = async (data,token)=>{
             getAuth,
             authLoad: state.authLoad,
             getAllAuth,
-            isReload:state.isReload,
             allAuth: state.allAuth,
             success: state.success,
             clearSuccess,
@@ -308,6 +353,10 @@ const resetRequest = async (data,token)=>{
             clearError,
             registerAuth,
             logout,
+            editForm:state.editForm,
+            updateUserRole,
+            editFormFun,
+            clearEditForm,
             deleteAuth,
             changePassword,
             auth: state.auth,

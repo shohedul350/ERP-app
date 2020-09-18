@@ -19,12 +19,11 @@ import ProductContext from '../../context/productContext/productContext'
 
 export default function SidebarExample(props) {
   const { url } = props.match;
-  const {getAuth,getAllAuth,logout}=useContext(AdminContext);
+  const {getAuth,logout}=useContext(AdminContext);
   const {getProfile,profile}=useContext(ProfileContext);
   const {getProduct}=useContext(ProductContext)
   useEffect(()=>{
     getAuth();
-    getAllAuth();
     getProfile();
     getProduct()
     // eslint-disable-next-line
@@ -113,6 +112,34 @@ export default function SidebarExample(props) {
                    ADD PRODUCT
                   </Link>
             </Menu.Item>
+
+
+          </SubMenu>
+
+             {/* customer menu */}
+             <SubMenu key="sub5" icon={<AppstoreOutlined />} title="CUSTOMER">
+            <Menu.Item key="14">
+            <Link  to="/dashboard/add-customer">
+                   ADD CUSTOMER
+                  </Link>
+            </Menu.Item>
+            <Menu.Item key="15">
+            <Link  to="/dashboard/get-customers">
+                   GET CUSTOMERS
+                  </Link>
+            </Menu.Item>
+
+
+          </SubMenu>
+
+              {/* invoice menu */}
+              <SubMenu key="sub6" icon={<AppstoreOutlined />} title="INVOICE">
+            <Menu.Item key="15">
+            <Link  to="/dashboard/create-invoice">
+                 CREATE INVOICE
+                  </Link>
+            </Menu.Item>
+         
 
 
           </SubMenu>

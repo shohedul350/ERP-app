@@ -1,4 +1,5 @@
 const { validationResult } = require('express-validator');
+const fs = require('fs');
 const asyncHandler = require('../utilis/async');
 const errorFormator = require('../utilis/errorFormater');
 const Product = require('../models/ProductModel');
@@ -40,9 +41,13 @@ exports.updateProduct = asyncHandler(async (req, res) => {
 
 // delete product
 exports.deleteProduct = asyncHandler(async (req, res) => {
-  const deleteProduct = await
-  Product.findByIdAndRemove(req.params.id);
-  return res.status(200).json({ msg: 'Product Delete Success', success: true, deleteProduct });
+  const product = await Product.findOne({ _id: req.params.id });
+  const productImage = product.image;
+  fs.unlink(`${productImage}`, async (err) => {
+    const deleteProduct = await
+    Product.findByIdAndRemove(req.params.id);
+    return res.status(200).json({ msg: 'Product Delete Success', success: true, deleteProduct });
+  });
 });
 
 // router.get('/search', async (req, res, next) => {

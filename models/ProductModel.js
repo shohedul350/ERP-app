@@ -14,9 +14,9 @@ const productSchema = mongoose.Schema({
     type: Number,
     default: 0,
   },
-  unit:{
-       type: String,
-       
+  unit: {
+    type: String,
+
   },
   image: {
     type: String,
@@ -38,9 +38,7 @@ const productSchema = mongoose.Schema({
 {
   timestamps: true,
 });
-productSchema.index({ name: 'text'});
-
-
+productSchema.index({ name: 'text' });
 productSchema.plugin(mongoosePaginate);
 const Product = mongoose.model('Product', productSchema);
 module.exports = Product;

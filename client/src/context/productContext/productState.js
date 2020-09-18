@@ -87,6 +87,7 @@ const deleteProduct = async (id)=>{
     clearSuccess()
   
   }catch (err){  
+    console.log(err)
     dispatch({
       type:ERROR,
       payload:err.response.data
@@ -112,6 +113,7 @@ const deleteProduct = async (id)=>{
           type:UPDATE_PRODUCT,
           payload:res.data
       }) 
+      clearSuccess()
   } catch (err) {
     dispatch({
       type:ERROR,
@@ -166,7 +168,7 @@ const clearError=()=>{
       dispatch({
          type:CLEAR_ERROR,
       })
-     }, 3000);
+     }, 4000);
 }
 
 
@@ -176,7 +178,7 @@ const clearSuccess =()=>{
   dispatch({
      type:CLEAR_SUCCESS,
   })
- }, 3000);
+ }, 4000);
 }
 
 
@@ -191,7 +193,7 @@ const clearSuccess =()=>{
         deleteProduct,
         success:state.success,
         error:state.error,
-        serverMessage:state.message,
+        serverMessage:state.serverMessage,
         updateProduct,
         editForm:state.editForm,
         editFormFun,
