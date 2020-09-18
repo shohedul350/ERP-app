@@ -38,10 +38,10 @@ const { products } = useContext(ProductContext);
             <IsoWidgetsWrapper>
               {/* Sale Widget */}
               <SaleWidget
-                label='TOTAL BLANCE'
+                label='TOTAL PRODUCT BLANCE'
                 price={totalBalance}
-                details="this is details"
-                fontColor="#F75D81"
+                details=""
+                fontColor="black"
               />
     
             </IsoWidgetsWrapper>
@@ -51,10 +51,10 @@ const { products } = useContext(ProductContext);
             <IsoWidgetsWrapper>
               {/* Sale Widget */}
               <SaleWidget
-                label='SALE'
-                price='1000'
-                details="this is details"
-                fontColor="#F75D81"
+                label='Total SALE'
+                price='0'
+                details=""
+                fontColor="black"
               />
             </IsoWidgetsWrapper>
           </Col>
@@ -63,10 +63,10 @@ const { products } = useContext(ProductContext);
             <IsoWidgetsWrapper>
               {/* Sale Widget */}
               <SaleWidget
-               label='TOTAL BLANCE'
-               price='1000'
-               details="this is details"
-               fontColor="#F75D81"
+               label='TODAY SALE'
+               price='0'
+               details=""
+               fontColor="black"
               />
             </IsoWidgetsWrapper>
           </Col>
@@ -75,10 +75,10 @@ const { products } = useContext(ProductContext);
             <IsoWidgetsWrapper>
               {/* Sale Widget */}
               <SaleWidget
-              label='TOTAL BLANCE'
-              price='1000'
-              details="this is details"
-              fontColor="#F75D81"
+              label='LAST MONTH SALE'
+              price='0'
+              details=""
+              fontColor="black"
               />
             </IsoWidgetsWrapper>
           </Col>

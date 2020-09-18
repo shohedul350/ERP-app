@@ -77,38 +77,6 @@ const onSubmit=e=>{
 	</div>
 </div>
 
-
-
-      //    <div className="container">
-      //   <div className="isoFormContentWrapper">
-      //     <div className="isoFormContent">
-      //       <div className="isoLogoWrapper">
-      //         <Link to="/">
-      //           Back
-      //         </Link>
-      //       </div>
-
-    
-      //       <form onSubmit={e=>onSubmit(e)}>
-      //       <div className="isoForgotPassForm">
-      //         <div className="isoInputWrapper">
-      //           <Input size="large" 
-      //           placeholder="Enter Your Email"
-      //           name="email"
-      //           value={email}
-      //           onChange={event => setEmail(event.target.value)}
-      //           required
-      //            />
-      //         </div>
-
-      //         <div className="isoInputWrapper">
-      //         <button className="btn btn-info btn-block mb-2" type="submit">Send Request</button >
-      //         </div>
-      //       </div>
-      //       </form>
-      //     </div>
-      //   </div>
-      // </div>
   
   )
 }

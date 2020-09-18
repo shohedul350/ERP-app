@@ -89,7 +89,10 @@ const onChange=e=>{setFormData({...formData,[e.target.name]:e.target.value}); }
 					</div>						
 						<button className="btn btn-info btn-block mb-2" type="submit">Login</button >                
 				</form>
-				 <Link to="/forget-password">Forget Password</Link>
+				<div>
+				<Link to="/forget-password">Forget Password</Link>
+				</div>
+				
 				<p className="account text-white">By clicking login, you agree to our <Link to="/Terms&Conditions" href="">Terms & Conditions!</Link></p>
 			
 			</div>
@@ -98,7 +101,7 @@ const onChange=e=>{setFormData({...formData,[e.target.name]:e.target.value}); }
 	</div>
 
 	<div className="footer">
-		<p>&copy; 2020 ERP solution. All Rights Reserved | Develop by <u> <a href="https://gitconnected.com/shohedul350" target="blank">Shohedul</a></u></p>
+		<p>&copy; 2020 ERP solution. All Rights Reserved | Develop by <u> <a href="https://shohedul350.netlify.app/" target="blank">Shohedul</a></u></p>
 	</div>
 </div>
 </div>

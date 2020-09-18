@@ -1,7 +1,7 @@
 import React,{useContext,useState,useEffect}from 'react';
 import { createBrowserHistory } from 'history';
 import moment from "moment";
-import { Popconfirm,message} from 'antd';
+import { Popconfirm,message, Badge} from 'antd';
 
 import CustomerContext from '../../context/customerContext/CustomerContext';
 import ProfileContext from '../../context/profileContext/ProfileContext'
@@ -12,7 +12,7 @@ export default function CartItem(props) {
   const { items } = props
   const { getCustomer,customers } = useContext(CustomerContext);
   const { profile } = useContext(ProfileContext);
-  const { addInvoice,success,error } = useContext(InvoiceContext);
+  const { addInvoice,success,error, } = useContext(InvoiceContext);
 
   const history = createBrowserHistory();
     useEffect(()=>{
@@ -54,19 +54,22 @@ export default function CartItem(props) {
 
 
   const increment=(id,incre)=>{
-        let tempProduct = [...products];
+    let tempProduct = [...products];
+     
         const selectedProduct = tempProduct.find(item =>  item._id === id);
         const index = tempProduct.indexOf(selectedProduct);
         const product = tempProduct[index];
-        delete product.count;
-        delete product.inCart;
-        delete product.total;
-        delete product.updatedAt;
-        delete product.createdAt
-        product.stock = product.stock-incre
-        product.qty = 1
-        product.qty =incre
-        setProducts(tempProduct)
+          delete product.count;
+          delete product.inCart;
+          delete product.total;
+          delete product.updatedAt;
+          delete product.createdAt
+          product.stock = product.stock-parseInt(incre)
+          product.qty = 1
+          product.qty =parseInt(incre)
+          setProducts(tempProduct)
+  
+    
    }
 
    const totalPacking=(id,packing)=>{
@@ -96,12 +99,7 @@ export default function CartItem(props) {
      
 
 
-    // const oldStock = items.map(product=>{
-    //         product.stock,product._id
-    // })
-    // const selProduct=products.map(product=>{
-    //   product.stock,product._id
-    // })
+    
      const customerObject={orderNumber,customerId,address,mobile,email}
      const invoiceObject={customerObject,products }
 
@@ -110,10 +108,11 @@ export default function CartItem(props) {
           if( orderNumber == "" ||  address == "" || mobile == "" || email=="" || products==[]){
             message.error('Fill All File');
           }else{
-              addInvoice(invoiceObject)
+            // console.log(invoiceObject)
+            addInvoice(invoiceObject)
             // if(success){
               message.success('Successfully Complete Invoice');
-              history.push('/dashboard')
+        
             // }else{
             //   message.error('server error');
             // }
@@ -210,20 +209,41 @@ export default function CartItem(props) {
                  </th>
             <th scope="col">{product.name}</th>
             <th scope="col">{product.unit}</th>
-            <th scope="col" style={{width:"150px"}}> 
-                <div class="form-group ">
-                <input
-                type="number"
-                className="form-control"
-                name="address"
-                placeholder={`current stock ${product.stock}`}
-                onChange={(e)=>increment(product._id,e.target.value)}
-                required
-                />
+            <th scope="col" style={{width:"150px",display:"flex"}}> 
+            <div>
+            <Badge count={product.stock}/>
+            </div>
+            <div className="form-group">
+            <input 
+            type="number" 
+            className="form-control"
+            name="stock" 
+             min="1" max={product.stock}
+             name="stock" 
+              onChange={(e)=>increment(product._id,e.target.value)}
+             />
+                 {/* <select id="inputState"
+                  className="form-control"
+                  name="stock" 
+                  onChange={(e)=>totalPacking(product._id,e.target.value)}
+                >
                 
-                </div>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
+                  <option>9</option>
+                  <option>10</option>
+                </select> */}
+              </div>
              
               </th>
+
+
             <th scope="col"  style={{width:"100px"}}>
             <div className="form-group">
                  <select id="inputState"
@@ -271,3 +291,4 @@ export default function CartItem(props) {
     </div>
     )
 }
+
